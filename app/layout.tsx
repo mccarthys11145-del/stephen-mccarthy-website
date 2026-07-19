@@ -1,56 +1,45 @@
-
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
-import { Toaster } from '@/components/ui/toaster'
 import Header from '@/components/header'
 import Footer from '@/components/footer'
 import { PersonJsonLd } from '@/components/seo/person-json-ld'
-
-const inter = Inter({ subsets: ['latin'] })
+import { profile, siteUrl } from '@/lib/profile'
 
 export const metadata: Metadata = {
   title: {
-    default: 'Stephen McCarthy PA-C | Experienced Physician Assistant & Healthcare Professional',
-    template: '%s | Stephen McCarthy PA-C'
+    default: 'Stephen McCarthy | Professional Profile & Public Record',
+    template: '%s | Stephen McCarthy',
   },
-  description: 'Stephen McCarthy PA-C is an experienced physician assistant and clinical director specializing in psychiatry, wellness care, and community health services in the Lehigh Valley region.',
+  description:
+    'Source-backed professional profile and public-record information for Stephen Thomas McCarthy in Pennsylvania.',
   keywords: [
-    'Stephen McCarthy PA-C',
     'Stephen McCarthy PA',
-    'Stephen McCarthy Physician Assistant',
-    'Lehigh Valley Wellness',
-    'Psychiatry PA',
-    'Mental Health Professional',
-    'Healthcare Pennsylvania',
-    'Clinical Director PA',
-    'Physician Assistant Psychiatry'
+    'Stephen McCarthy physician assistant',
+    'Stephen Thomas McCarthy',
+    'NPI 1912308743',
+    'Pennsylvania physician assistant verification',
   ],
-  authors: [{ name: 'Stephen McCarthy PA-C' }],
-  creator: 'Stephen McCarthy PA-C',
-  publisher: 'Stephen McCarthy PA-C',
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  metadataBase: new URL('https://stephenmccarthypa.com'),
-  alternates: {
-    canonical: '/',
-  },
+  authors: [{ name: profile.name }],
+  creator: profile.name,
+  publisher: profile.name,
+  formatDetection: { email: false, address: false, telephone: false },
+  metadataBase: new URL(siteUrl),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://stephenmccarthypa.com',
-    title: 'Stephen McCarthy PA-C | Experienced Physician Assistant & Healthcare Professional',
-    description: 'Stephen McCarthy PA-C is an experienced physician assistant and clinical director specializing in psychiatry, wellness care, and community health services.',
-    siteName: 'Stephen McCarthy PA-C',
+    url: siteUrl,
+    title: 'Stephen McCarthy | Professional Profile & Public Record',
+    description:
+      'Source-backed professional profile and public-record information for Stephen Thomas McCarthy in Pennsylvania.',
+    siteName: 'Stephen McCarthy',
+    images: [{ url: '/stephen-mccarthy-professional.jpg', alt: 'Stephen McCarthy' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Stephen McCarthy PA-C | Experienced Physician Assistant & Healthcare Professional',
-    description: 'Experienced physician assistant specializing in psychiatry, wellness care, and community health services.',
+    title: 'Stephen McCarthy | Professional Profile & Public Record',
+    description:
+      'Source-backed professional profile and public-record information for Stephen Thomas McCarthy in Pennsylvania.',
+    images: ['/stephen-mccarthy-professional.jpg'],
   },
   robots: {
     index: true,
@@ -65,32 +54,18 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-scroll-behavior="smooth">
       <head>
         <PersonJsonLd />
       </head>
-      <body className={inter.className} suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="light"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-          </div>
-          <Toaster />
-        </ThemeProvider>
+      <body className="font-sans">
+        <div className="flex min-h-screen flex-col">
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
       </body>
     </html>
   )
