@@ -1,15 +1,21 @@
+
 'use client'
 
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Menu, X, Stethoscope } from 'lucide-react'
 
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Professional Record', href: '/professional-record' },
-  { name: 'Profiles & Sources', href: '/media-press' },
+  { name: 'Professional Journey', href: '/professional-journey' },
+  { name: 'Community', href: '/community-involvement' },
+  { name: 'Blog', href: '/blog' },
+  { name: 'Testimonials', href: '/testimonials' },
+  { name: 'Patient Forms', href: '/patient-forms' },
+  { name: 'Media', href: '/media-press' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -18,23 +24,30 @@ export default function Header() {
   const pathname = usePathname()
 
   return (
-    <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm">
-      <div className="container mx-auto max-w-7xl px-4">
-        <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="font-bold text-slate-950" aria-label="Stephen McCarthy home">
-            <span className="block text-lg">Stephen McCarthy</span>
-            <span className="block text-xs font-medium uppercase tracking-wider text-blue-700">Professional profile</span>
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-sm border-b border-gray-200">
+      <div className="container mx-auto px-4 max-w-7xl">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-3">
+            <div className="bg-blue-600 p-2 rounded-lg">
+              <Stethoscope className="h-6 w-6 text-white" />
+            </div>
+            <div>
+              <div className="font-bold text-lg text-gray-900">Stephen McCarthy</div>
+              <div className="text-sm text-blue-600">PA-C</div>
+            </div>
           </Link>
 
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-1">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                   pathname === item.href
-                    ? 'bg-blue-50 text-blue-800'
-                    : 'text-slate-700 hover:bg-slate-50 hover:text-blue-700'
+                    ? 'bg-blue-100 text-blue-700'
+                    : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
                 }`}
               >
                 {item.name}
@@ -42,31 +55,55 @@ export default function Header() {
             ))}
           </nav>
 
+          {/* CTA Button - Desktop */}
+          <div className="hidden lg:block">
+            <Button asChild>
+              <Link href="/contact">Get In Touch</Link>
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
           <button
             type="button"
-            className="rounded-md p-2 text-slate-700 hover:bg-slate-100 lg:hidden"
+            className="lg:hidden p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-50"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-navigation"
           >
-            <span className="sr-only">Toggle main menu</span>
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            <span className="sr-only">Open main menu</span>
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
 
+        {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav id="mobile-navigation" className="border-t border-slate-200 py-3 lg:hidden" aria-label="Mobile navigation">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="block rounded-md px-3 py-2 text-base font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-700"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.name}
-              </Link>
-            ))}
-          </nav>
+          <div className="lg:hidden">
+            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
+              {navigation.map((item) => (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    pathname === item.href
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.name}
+                </Link>
+              ))}
+              <div className="pt-2 border-t border-gray-200">
+                <Button asChild className="w-full">
+                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
+                    Get In Touch
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </header>
