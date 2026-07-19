@@ -10,7 +10,6 @@ export default function AdobeFormEmbed() {
 
   useEffect(() => {
     const container = containerRef.current
-
     if (!container) {
       return
     }
@@ -19,7 +18,6 @@ export default function AdobeFormEmbed() {
 
     const script = document.createElement('script')
     script.type = 'text/javascript'
-    script.language = 'JavaScript'
     script.src = ADOBE_FORM_SRC
 
     container.appendChild(script)
