@@ -21,11 +21,25 @@ export default function ContactPage() {
           <section className="rounded-xl border border-slate-200 bg-white p-7 shadow-sm">
             <h2 className="mb-3 text-2xl font-semibold text-slate-950">Practice inquiries</h2>
             <p className="mb-5 leading-relaxed text-slate-700">
-              Use the practice&apos;s official website for its current location, contact information, and
-              patient communication process.
+              Contact {profile.practice.name} through its official practice channels. Do not send protected
+              health information by ordinary email or through this website.
             </p>
+            <address className="mb-5 space-y-1 not-italic leading-relaxed text-slate-700">
+              <div>{profile.practice.name}</div>
+              <div>{profile.practice.address.streetAddress}</div>
+              <div>
+                {profile.practice.address.addressLocality}, {profile.practice.address.addressRegion}{' '}
+                {profile.practice.address.postalCode}
+              </div>
+              <div>
+                <a className="font-semibold text-blue-700 hover:underline" href={`tel:${profile.practice.telephone}`}>
+                  {profile.practice.phone}
+                </a>
+              </div>
+              <div>Hours: {profile.practice.hours.display}</div>
+            </address>
             <a href={profile.links.practice} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 font-semibold text-blue-700 hover:underline">
-              Visit practice website <ExternalLink className="h-4 w-4" />
+              Visit {profile.practice.name} website <ExternalLink className="h-4 w-4" />
             </a>
           </section>
           <section className="rounded-xl border border-slate-200 bg-white p-7 shadow-sm">
