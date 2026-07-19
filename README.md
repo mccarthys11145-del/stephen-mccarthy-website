@@ -1,28 +1,44 @@
-# Stephen McCarthy professional profile
 
-Source-backed professional identity and public-record website for Stephen Thomas McCarthy.
+# Stephen McCarthy PA-C - Personal Website
 
-## Editorial standard
+This is the deployment-ready version of Stephen McCarthy PA-C's personal website, optimized for Vercel deployment.
 
-- Time-sensitive license and certification facts link to the responsible official verifier.
-- Identity, current status, and historical regulatory records are kept separate.
-- Patient or protected health information is not collected by this site.
-- Testimonials, ratings, awards, outcomes, and professional claims require a named source and appropriate permission.
+## 🚀 Quick Deploy to Vercel
 
-## Local development
+1. **Download this entire folder**
+2. **Go to [vercel.com](https://vercel.com)** and create account
+3. **Drag and drop this folder** to Vercel dashboard
+4. **Click Deploy** - Vercel will auto-detect Next.js
 
-Requirements: Node.js 20.9 or newer.
+## 📁 What's Included
 
-```bash
-npm install
-npm run dev
-```
+- ✅ Complete Next.js application
+- ✅ Professional photos and assets
+- ✅ Optimized for performance
+- ✅ Mobile responsive design
+- ✅ SEO optimized
+- ✅ Contact forms and blog functionality
 
-Production checks:
+## 🎯 Features
 
-```bash
-npm run typecheck
-npm run build
-```
+- **Professional homepage** with hero section
+- **About page** with personal story
+- **Blog section** with healthcare articles
+- **Contact form** for patient inquiries
+- **Testimonials** and professional achievements
+- **Community involvement** showcase
 
-The site is built with Next.js 16, React 19, TypeScript, and Tailwind CSS.
+## 🔧 Technical Details
+
+- **Framework**: Next.js 14
+- **Styling**: Tailwind CSS
+- **Components**: Radix UI
+- **Animations**: Framer Motion
+- **Deployment**: Optimized for Vercel
+
+## 📞 Support
+
+For updates or changes to this website, contact the developer who created this project.
+
+---
+*Ready for immediate deployment to Vercel*
